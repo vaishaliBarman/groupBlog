@@ -1,0 +1,155 @@
+body{
+    /* background-image: url("https://st3.depositphotos.com/13324256/19066/i/450/depositphotos_190669946-stock-photo-green-textured-surface-abstract-background.jpg");
+     background-repeat: no-repeat;
+     background-size: cover;*/
+     margin: 0;
+     padding: 0;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+     font-family: sans-serif;
+ }
+ body::before {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background-image: url("https://img.freepik.com/premium-photo/vintage-fountain-pen-aged-paper-with-handwritten-text-against-textured-turquoise-background_653240-15630.jpg");
+     background-size: cover;
+     filter: blur(10px); /* Adjust the blur radius as needed */
+     z-index: -1;
+ }
+ /*#main{
+   width: 600px;
+   height: 700px;
+   background: rgb(111, 128, 224);
+   overflow: hidden;
+   border-radius: 10px;
+   box-shadow: 5px 30px 50px black;
+ }*/
+   #main {
+     width: 600px;
+     height: 700px;
+     background-image: url("https://img.freepik.com/premium-photo/vintage-fountain-pen-aged-paper-with-handwritten-text-against-textured-turquoise-background_653240-15630.jpg");
+     background-repeat: no-repeat;
+     background-size: cover;
+     overflow: hidden;
+     border-radius: 10px;
+     box-shadow: 10px 40px 80px  rgba(0, 0, 0, 0.959);
+   }
+   #check {
+     display: none;
+ }
+ .signup{
+     position: relative;
+     width: 100%;
+     height: 100%;
+ }
+ /*label{
+     color: whitesmoke;
+     font-size: 50px;
+     justify-content: center;
+     display: flex;
+     margin: 60px;
+     font-weight: bold;
+     cursor: pointer;
+     transition: .5s ease-in-out;
+     margin-bottom: 10px;
+ }*/
+     label{
+     color: #cbf3e5;
+     font-size: 50px;
+     justify-content: center;
+     display: flex;
+     margin-top: 50px;
+     font-weight: bold;
+     cursor: pointer;
+     transition: color 0.5s ease-in-out; /* Color transition */
+    margin-bottom: 60px;
+     animation: colorChange 3s infinite alternate ease-in-out; /* Animation */
+ }
+ 
+ /* Define the colorChange animation */
+ @keyframes colorChange {
+     0% {
+         color: rgba(2, 61, 58, 0.959);
+     }
+     50% {
+         color: #025753f5;
+     }
+     100% {
+         color: #046a65f5;
+     }
+ }
+ 
+     label:hover {
+     color: #094737; /* Change color on hover */
+   
+ }
+ 
+ 
+ input{
+     width: 60%;
+     height: 20px;
+     font-size: 20px;
+     background: #cbf3e5;
+     justify-content: center;
+     display: flex;
+     margin: 20px auto;
+     padding: 10px;
+     border: none;
+     outline: none;
+     border-radius: 70px;
+ }
+ input:hover{
+     border: 3px solid #094737;
+ }
+ button{
+     width: 40%;
+     height: 50px;
+     margin: 40px auto;
+     justify-content: center;
+     display: block;
+     color: #cbf3e5;
+     background:  rgba(2, 61, 58, 0.959);
+     font-size: 30px;
+     font-weight: bold;
+     margin-top: 40px;
+     outline: none;
+     border: none;
+     border-radius: 40px;
+     transition: .3s ease-in;
+     cursor: pointer;
+     box-shadow: 5px 20px 40px rgba(2, 85, 81, 0.959);
+ }
+ button:hover{
+     background: #025551f5;
+ }
+ 
+ .login{
+     height: 1000px;
+     background: #cbf3e5;
+     border-radius: 60% / 10%;
+     transform: translateY(-180px);
+     transition: .8s ease-in-out;
+ }
+ .login h1{
+     color: rgba(2, 61, 58, 0.959);
+     transform: scale(.6);
+ }
+ .login p{
+     text-align: center;
+     padding: 30px;
+ }
+ #check:checked ~ .login{
+     transform: translateY(-500px);
+ }
+ #check:checked ~ .login label{
+     transform: scale(1);
+ }
+ #check:checked ~ .signup label{
+     transform: scale(.6);
+ }

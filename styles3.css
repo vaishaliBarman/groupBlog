@@ -1,0 +1,383 @@
+    body {
+        margin: 0;
+        padding: 0; 
+        background-color: #d5ecec;
+    }
+
+    /********************************* Navbar***************************/
+    .custom-navbar {
+        background-color: rgba(5, 39, 39, 0.959); 
+    }
+    .custom-navbar .navbar-nav .nav-link {
+        color: white;
+    }
+    .custom-navbar .navbar-brand {
+        color: white; 
+    }
+    .custom-navbar .navbar-nav .nav-link:hover {
+        color: #cccccc; 
+    }
+    .custom-navbar .dropdown-menu { 
+        background-color: rgb(1, 1, 80); 
+        border: none; 
+    }
+    .custom-navbar .dropdown-item {
+        color: white; 
+    }
+    .custom-navbar .dropdown-item:hover {
+        color: #cccccc; 
+    }
+    .navbar-toggler {
+        border-color: white; /* Set the border color of the toggle button */
+    }
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); /* Set toggle icon color to white */
+    }
+
+    /************************** carousel*******************************/
+    #carouselExample {
+        width: 60%; /* Adjust width as needed */
+        margin: 30px auto; /* Margin to center the carousel and add space around */
+        margin-top: 10vh; /* Adjust this value to control space below the navbar */
+        position: relative;
+    }
+    
+    /* Ensure the carousel is below the navbar */
+    body {
+        padding-top: 70px; 
+    }
+    
+    /* Make carousel responsive */
+@media (max-width: 767.98px) {
+  #carouselExample {
+      width: 100%;
+      margin-top: 50px;
+  }
+
+  .carousel-caption {
+      display: none; /* Hide caption on small devices */
+  }
+
+  .carousel-item img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+  }
+
+  .carousel-item .mobile-button {
+      display: block; /* Show button on small devices */
+      position: relative;
+      margin: 10px auto 20px auto;
+      text-align: center;
+      
+  }
+
+  .mobile-button a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #0d0d0e;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      border: 1px solid white;
+      border-radius: 10px;
+  }
+
+  .mobile-button a:hover {
+      background-color: #14181d;
+  }
+}
+  
+    
+    /* Wrapper for consistent aspect ratio */
+    .carousel-item {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 aspect ratio; adjust as needed */
+    }
+    
+    /* Apply blur effect to images */
+    .carousel-item img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensure the image covers the area */
+        filter: blur(0.5px); /* Apply blur effect; adjust value as needed */
+    }
+    
+    /* Ensure image caption is above blurred image */
+    .carousel-caption {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        z-index: 2; /* Ensure the caption is above the image */
+        color: #fff; /* Ensure text is visible */
+        background: rgba(0, 0, 0, 0.5); /* Optional: add a semi-transparent background for better readability */
+        padding: 10px;
+    }
+    
+    /* Remove underline from "Read More" links and set text color */
+    .carousel-caption a {
+        color: #fff; /* Set link color to match caption text */
+        text-decoration: none; /* Remove underline */
+    }
+    
+    .carousel-caption a:hover {
+        text-decoration: underline; /* Optional: underline on hover for better UX */
+    }
+
+
+    /*************** Recent Page******************/
+
+    .recent-section {
+        text-align: center;
+        padding: 20px;
+        background-image: url("https://example.com/your-background-image.jpg"); /* Replace with your desired background image URL */
+        background-size: cover;
+      }
+      h2{
+        font-size: 50px;
+      }
+      
+      h1 {
+         font-size: 60px;
+        font-weight: 700; /* Increased font weight */
+        color: white;
+        margin-bottom: 20px;
+        font-family: 'Arial Black', sans-serif; /* A bolder font style */
+        transition: transform 0.3s ease-in-out; /* Smooth zoom effect */
+      }
+      
+      h2:hover {
+        transform: scale(1.1); /* Zoom in on hover */
+      }
+      
+      .card-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+        column-gap: 15px; /* Moderate gap between columns */
+        row-gap: 20px;    /* Moderate gap between rows */
+        justify-items: center;
+        padding: 0 10px;  /* Reduced padding on the sides */
+        width: 75%; /* Slightly increased container width */
+        margin: 0 auto; /* Center the container */
+      }
+      
+      .card {
+        background-color: #fff;
+        border: 2px solid #000; /* Thinner black border */
+        border-radius: 8px; /* Slightly rounded corners */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+        text-align: center;
+        transition: transform 0.3s;
+        overflow: hidden;
+      }
+      
+      .card:hover {
+        transform: translateY(-8px);
+      }
+      
+      .card img {
+        width: 100%;
+        height: 200px; /* Adjusted height for better image visibility */
+        object-fit: cover; /* Ensure the image covers the area without distortion */
+        border-radius: 8px 8px 0 0; /* Rounded corners for the image */
+      }
+      
+      .card h3 {
+        font-size: 22px; /* Adjusted font size for the title */
+        color: #333;
+        margin: 10px 0 8px;
+        font-weight: bold; /* Increased font weight */
+      }
+      
+      .card p {
+        font-size: 14px; /* Smaller font size for the description */
+        color: #666;
+        line-height: 1.5;
+        padding: 10px; /* Added padding for the description */
+        font-weight: normal; /* Normal font weight */
+      }
+      
+      .card .see-more {
+        display: inline-block;
+        padding: 6px 12px; /* Slightly increased padding for the button */
+        background-color: #000; /* Black background */
+        color: #fff; /* White text */
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        border: 1px solid #000; /* Thin black border */
+        border-radius: 10px;
+        transition: background-color 0.3s, transform 0.3s;
+        width: fit-content; /* Adjust width to fit content */
+        margin: 0 auto 20px;
+      }
+      
+      .card .see-more:hover {
+        background-color: #333;
+        transform: scale(1.05);
+      }
+      
+      /* Styles for Popular Tags */
+      .popular-tags h3 {
+        font-size: 35px; /* Increased font size */
+        font-weight: bold; /* Bold font */
+        color: #333;
+        margin-bottom: 15px;
+      }
+      
+      .popular-tags p {
+        font-size: 25px; /* Increased font size */
+        font-weight: bold; /* Bold font */
+        color: #666;
+        margin-bottom: 10px;
+      }
+      
+      /* Media Queries for Responsiveness */
+      @media (max-width: 1200px) {
+        .card-container {
+          grid-template-columns: repeat(3, 1fr); /* 3 cards per row for medium screens */
+        }
+      }
+      
+      @media (max-width: 900px) {
+        h2 {
+          font-size: 32px; /* Slightly smaller heading for smaller screens */
+        }
+      
+        .card-container {
+          grid-template-columns: repeat(2, 1fr); /* 2 cards per row for small screens */
+          width: 90%; /* Increase width to better fit content on small screens */
+        }
+      
+        .card img {
+          height: 180px; /* Adjusted height for images on smaller screens */
+        }
+      
+        .card h3 {
+          font-size: 20px; /* Slightly smaller font size for card titles */
+        }
+      
+        .card p {
+          font-size: 13px; /* Slightly smaller font size for descriptions */
+        }
+      }
+      
+      @media (max-width: 600px) {
+        h2 {
+          font-size: 28px; /* Smaller heading for mobile screens */
+        }
+      
+        .card-container {
+          grid-template-columns: 1fr; /* 1 card per row for very small screens */
+          width: 100%; /* Full width for mobile */
+        }
+      
+        .card img {
+          height: 150px; /* Further adjust image height for mobile screens */
+        }
+      
+        .card h3 {
+          font-size: 18px; /* Adjusted font size for card titles on mobile */
+        }
+      
+        .card p {
+          font-size: 12px; /* Smaller font size for descriptions on mobile */
+        }
+      }
+      
+    
+
+
+    /************************ Footer ******************************/
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    footer {
+      background-color: hsla(180, 82%, 28%, 0.959);
+    }
+    .footerContainer {
+      width: 100%;
+      padding: 70px 30px 20px;
+    }
+    .socialIcons {
+      display: flex;
+      justify-content: center;
+    }
+    .socialIcons a {
+text-decoration: none;
+padding: 10px;
+background-color: white;
+margin: 10px;
+border-radius: 50%;
+display: inline-block;
+}
+
+.socialIcons a img {
+width: 30px; /* Adjust the size of your icons */
+height: 30px;
+display: block;
+}
+
+.socialIcons a:hover {
+background-color: hsla(180, 82%, 28%, 0.959);
+transition: 0.5s;
+}
+
+.socialIcons a img:hover {
+filter: invert(100%); /* This will invert the colors on hover, you can adjust as needed */
+transition: 0.5s;
+}
+
+    .footerNav {
+      margin: 30px 0;
+    }
+    .footerNav ul {
+      display: flex;
+      justify-content: center;
+      list-style-type: none;
+    }
+    .footerNav ul li a {
+      color: white;
+      margin: 20px;
+      text-decoration: none;
+      font-size: 1.3em;
+      opacity: 0.7;
+      transition: 0.5s;
+    }
+    .footernavul li a:hover {
+      opacity: 1;
+    }
+    .footerBottom {
+      background-color: rgba(5, 39, 39, 0.959);
+      padding: 20px;
+      text-align: center;
+    }
+    .footerBottom p{
+      color: whitesmoke;
+    }
+    .designer{
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 400px;
+      margin: 0px 5px;
+    }
+    @media (max-width: 700px) {
+        .footerNav ul{
+          flex-direction: column;
+        }
+        .footerNav ul li{
+          width: 100%;
+          text-align: center;
+          margin: 10px;
+        }
+    }
+
+   

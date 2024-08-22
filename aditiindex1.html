@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Posts - My Blog</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(teal, black, teal, black);
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav input[type="text"] {
+            padding: 5px;
+            font-size: 14px;
+            max-width: 300px;
+            /* Limit width to prevent overflow */
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Post Styles */
+        .post {
+            border: 1px solid #ddd;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background: #fafafa;
+            position: relative;
+            word-wrap: break-word;
+            /* Ensure text wraps */
+        }
+
+        .post h3 {
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .post p {
+            margin: 5px 0;
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 730px;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            resize: none;
+        }
+
+        button {
+            background: none;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        button:hover {
+            background: #ddd;
+        }
+
+        /* Like Button Styles */
+        .like-button {
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: transparent; /* Make the heart transparent by default */
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .like-button::before {
+            content: '❤️';
+            color: #ccc; /* Light grey for unliked state */
+            transition: color 0.3s ease;
+        }
+
+        .like-button.liked::before {
+            color: red; /* Red for liked state */
+        }
+
+        .like-button.unliked::before {
+            color: #ccc; /* Light grey for unliked state */
+        }
+
+        .like-button.liked {
+            animation: likeAnimation 0.3s forwards;
+        }
+
+        .like-button.unliked {
+            animation: unlikeAnimation 0.3s forwards;
+        }
+
+        @keyframes likeAnimation {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes unlikeAnimation {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(0.5);
+            }
+        }
+
+        /* Share and Comment Button Styles */
+        .share-button,
+        .comment-button {
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .share-button:hover,
+        .comment-button:hover {
+            background: #ddd;
+        }
+
+        /* Share Dropdown Styles */
+        .share-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .share-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            padding: 12px 16px;
+            z-index: 1;
+            max-width: 200px;
+            /* Limit width to prevent overflow */
+        }
+
+        .share-dropdown:hover .share-content {
+            display: block;
+        }
+
+        .share-content a {
+            color: black;
+            padding: 5px 0;
+            display: block;
+            text-decoration: none;
+        }
+
+        .share-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Emoji Picker Styles */
+        .emoji-picker-button {
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            position: relative;
+            /* Make sure the picker is positioned relative to this button */
+        }
+
+        .emoji-picker {
+            display: none;
+            position: absolute;
+            background: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 5px;
+            border-radius: 5px;
+            z-index: 10;
+            /* Position the picker 40px below the button */
+            left: 0;
+            /* Align picker to the left edge of the button */
+            width: max-content;
+            /* Adjust width to fit content */
+            max-height: 200px;
+            /* Limit height to prevent overflow */
+            overflow-y: auto;
+            /* Enable vertical scrolling if needed */
+        }
+
+        .emoji-picker.show {
+            display: block;
+        }
+
+        .emoji {
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .emoji:hover {
+            background: #f0f0f0;
+        }
+
+        .post {
+    border: 1px solid #ddd;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 5px;
+    background: #fafafa;
+    position: relative;
+    word-wrap: break-word;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.post:hover {
+    background-color: #e0f7fa; /* Light teal green color */
+    transform: translateY(-5px); /* Slightly raise the post */
+}
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 20px;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav a {
+                margin: 10px 0;
+            }
+
+            nav input[type="text"] {
+                max-width: 100%;
+            }
+
+            main {
+                padding: 10px;
+            }
+
+            .post {
+                padding: 10px;
+                margin: 10px 0;
+            }
+
+            .post h3 {
+                font-size: 18px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+
+            .like-button {
+                font-size: 20px;
+            }
+
+            .share-button,
+            .comment-button {
+                font-size: 20px;
+            }
+
+            .emoji-picker {
+                top: 50px;
+                left: 0;
+                width: 100%;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+
+            .share-content {
+                width: 100%;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 18px;
+            }
+
+            .post {
+                padding: 8px;
+                margin: 8px 0;
+            }
+
+            .post h3 {
+                font-size: 16px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+
+            .like-button {
+                font-size: 18px;
+            }
+
+            .share-button,
+            .comment-button {
+                font-size: 18px;
+            }
+
+            .emoji-picker {
+                top: 60px;
+                width: 100%;
+                padding: 8px;
+            }
+
+            .share-content {
+                width: 100%;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <header>
+            <h1>Recent Posts</h1>
+            <nav>
+                <a href="index.html">Create New Post</a>
+                <input type="text" id="searchBar" placeholder="Search posts...">
+            </nav>
+        </header>
+
+        <main>
+            <section id="recentPosts">
+                <h2>Recent Posts</h2>
+                <div id="postsContainer"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 My Blog. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        const postsContainer = document.getElementById('postsContainer');
+        const searchBar = document.getElementById('searchBar');
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+        let currentTextarea = null; // Variable to track the currently active textarea
+
+        // Function to display posts
+        function displayPosts(filteredPosts = posts) {
+            postsContainer.innerHTML = '';
+            filteredPosts.forEach((post, index) => {
+                const postElement = document.createElement('div');
+                postElement.classList.add('post');
+                postElement.innerHTML = `
+                <h3>${post.title}</h3>
+                <p>${post.content}</p>
+                <p><strong>Category:</strong> ${post.category}</p>
+                <p>
+                    <button class="like-button ${post.userLiked ? 'liked' : 'unliked'}" onclick="toggleLike(${index})">
+                        ❤️
+                    </button>
+                    <span id="likeCount${index}">${post.likes}</span> Likes
+                </p>
+                <p><strong>💬</strong></p>
+                <ul>${post.comments.map(comment => `<li>${comment}</li>`).join('')}</ul>
+                <p>
+                    <button class="emoji-picker-button" data-index="${index}">😊</button>
+                    <div class="emoji-picker" id="emoji-picker-${index}">
+                        <span class="emoji" onclick="addEmoji('😊', ${index})">😊</span>
+                        <span class="emoji" onclick="addEmoji('😂', ${index})">😂</span>
+                        <span class="emoji" onclick="addEmoji('😍', ${index})">😍</span>
+                        <span class="emoji" onclick="addEmoji('😎', ${index})">😎</span>
+                        <span class="emoji" onclick="addEmoji('😢', ${index})">😢</span>
+                        <span class="emoji" onclick="addEmoji('😡', ${index})">😡</span>
+                        <span class="emoji" onclick="addEmoji('🥳', ${index})">🥳</span>
+                        <span class="emoji" onclick="addEmoji('🤔', ${index})">🤔</span>
+                        <!-- Add more emojis as needed -->
+                    </div>
+                </p>
+                <textarea id="commentBox${index}" placeholder="Add a comment..." onkeypress="addComment(event, ${index})"></textarea>
+                <div class="share-dropdown">
+                    <button class="share-button">🔗</button>
+                    <div class="share-content">
+                        <a href="https://wa.me/?text=${encodeURIComponent(post.title + '\n' + post.content)}" target="_blank">WhatsApp</a>
+                        <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+                        <a href="mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(post.content)}" target="_blank">Email</a>
+                    </div>
+                </div>
+            `;
+                postsContainer.appendChild(postElement);
+            });
+
+            // Add event listeners to emoji picker buttons
+            document.querySelectorAll('.emoji-picker-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    currentTextarea = document.getElementById(`commentBox${this.dataset.index}`);
+                    toggleEmojiPicker(this);
+                });
+            });
+        }
+
+        // Function to add emoji to the comment box
+        function addEmoji(emoji, index) {
+            if (currentTextarea) {
+                currentTextarea.value += emoji;
+                toggleEmojiPicker(document.querySelector(`.emoji-picker-button[data-index="${index}"]`));
+            }
+        }
+
+        // Function to toggle the emoji picker visibility
+        function toggleEmojiPicker(button) {
+            const emojiPicker = document.getElementById(`emoji-picker-${button.dataset.index}`);
+            emojiPicker.classList.toggle('show');
+        }
+
+        // Function to toggle like
+        function toggleLike(index) {
+            const post = posts[index];
+            post.userLiked = !post.userLiked;
+            post.likes += post.userLiked ? 1 : -1;
+            localStorage.setItem('posts', JSON.stringify(posts));
+            displayPosts();
+        }
+
+        // Function to add comment
+        function addComment(event, index) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                const commentBox = document.getElementById(`commentBox${index}`);
+                const commentText = commentBox.value.trim();
+                if (commentText) {
+                    posts[index].comments.push(commentText);
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                    displayPosts();
+                }
+                commentBox.value = '';
+            }
+        }
+
+        // Search function
+        searchBar.addEventListener('input', function () {
+            const query = searchBar.value.toLowerCase();
+            const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(query) || post.content.toLowerCase().includes(query));
+            displayPosts(filteredPosts);
+        });
+
+        // Initial display
+        displayPosts();
+        
+    </script>
+</body>
+
+</html>

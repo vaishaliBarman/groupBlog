@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Blog Platform</title>
+    <link rel="stylesheet" href="aditiindex1style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #d5ecec;
+        }
+        .custom-navbar {
+        background-color: rgba(5, 39, 39, 0.959); 
+    }
+    .custom-navbar .navbar-nav .nav-link {
+        color: white;
+    }
+    .custom-navbar .navbar-brand {
+        color: white; 
+    }
+    .custom-navbar .navbar-nav .nav-link:hover {
+        color: #cccccc; 
+    }
+    .custom-navbar .dropdown-menu { 
+        background-color: rgb(1, 1, 80); 
+        border: none; 
+    }
+    .custom-navbar .dropdown-item {
+        color: white; 
+    }
+    .custom-navbar .dropdown-item:hover {
+        color: #cccccc; 
+    }
+    .navbar-toggler {
+        border-color: white; /* Set the border color of the toggle button */
+    }
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); /* Set toggle icon color to white */
+    }
+
+/*
+        header {
+            background-color:rgba(5, 39, 39, 0.959);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        header input[type="text"] {
+            padding: 5px;
+            font-size: 14px;
+        }
+        */
+        #createPost{
+            margin-top: 10rem;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        form input, form textarea, form select {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #postsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .post {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 100%;
+            max-width: 50vh;
+            box-sizing: border-box;
+            height: auto;
+
+        }
+
+        .post h3 {
+            overflow-wrap: break-word;
+        }
+
+        .post p, .post textarea {
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+       
+
+        .edit-btn, .delete-btn {
+            margin: 5px;
+            padding: 5px;
+            cursor: pointer;
+            border: none;
+            color: white;
+            border-radius: 3px;
+        }
+
+        .edit-btn {
+            background-color: #007BFF;
+        }
+
+        .delete-btn {
+            background-color: #DC3545;
+        }
+
+        .edit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+        /************************ Footer ******************************/
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    footer {
+      background-color: hsla(180, 82%, 28%, 0.959);
+    }
+    .footerContainer {
+      width: 100%;
+      padding: 70px 30px 20px;
+    }
+    .socialIcons {
+      display: flex;
+      justify-content: center;
+    }
+    .socialIcons a {
+text-decoration: none;
+padding: 10px;
+background-color: white;
+margin: 10px;
+border-radius: 50%;
+display: inline-block;
+}
+
+.socialIcons a img {
+width: 30px; /* Adjust the size of your icons */
+height: 30px;
+display: block;
+}
+
+.socialIcons a:hover {
+background-color: hsla(180, 82%, 28%, 0.959);
+transition: 0.5s;
+}
+
+.socialIcons a img:hover {
+filter: invert(100%); /* This will invert the colors on hover, you can adjust as needed */
+transition: 0.5s;
+}
+
+    .footerNav {
+      margin: 30px 0;
+    }
+    .footerNav ul {
+      display: flex;
+      justify-content: center;
+      list-style-type: none;
+    }
+    .footerNav ul li a {
+      color: white;
+      margin: 20px;
+      text-decoration: none;
+      font-size: 1.3em;
+      opacity: 0.7;
+      transition: 0.5s;
+    }
+    .footernavul li a:hover {
+      opacity: 1;
+    }
+    .footerBottom {
+      background-color: rgba(5, 39, 39, 0.959);
+      padding: 20px;
+      text-align: center;
+    }
+    .footerBottom p{
+      color: whitesmoke;
+    }
+    .designer{
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 400px;
+      margin: 0px 5px;
+    }
+    @media (max-width: 700px) {
+        .footerNav ul{
+          flex-direction: column;
+        }
+        .footerNav ul li{
+          width: 100%;
+          text-align: center;
+          margin: 10px;
+        }
+    }
+    </style>
+</head>
+<body>
+ <!--<header>
+        <h1>My Blog</h1>
+        <nav>
+            <a href="recent.html" style="font-size: 1.5rem; text-decoration: none; color: white;">Recent Posts</a>
+            <input type="text" id="searchBar" placeholder="Search posts..." style="border: 2px solid white;border-radius: 12px; padding: 10px; ">
+        </nav>
+    </header>-->
+    
+       
+    <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./images/logo.png" class="rounded-circle" alt="logoimage" width="90" height="74">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-size: 1.3rem;">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index3.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aditicreate.html">Create yours</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index3.html">Recent Posts</a>
+                    </li>
+                   
+                </ul>
+                <form class="d-flex flex-row" role="search">
+                    <input class="form-control me-2" type="search" id="searchBar" placeholder="Search posts...">
+                    <!--<button class="btn btn-outline-success"  type="submit">Search</button>-->
+                </form>
+            </div>
+        </div>
+    </nav>   
+   
+
+    <main>
+        <section id="createPost">
+            <h2 style="text-align: center;">Create a New Post</h2>
+            <form id="postForm">
+                <input type="text" id="title" placeholder="Title" required>
+                <textarea id="content" placeholder="Content" required></textarea>
+                <select id="category">
+                    <option value="Travel">Travel</option>
+                    <option value="Health">Health</option>
+                    <option value="Food">Food</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Lifestyle">Lifestyle</option>
+                    <option value="Education">Education</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Interior">Interior</option>
+                    <option value="Stock Market">Stock Market</option>
+                    <option value="News">News</option>
+                    <option value="Culture">Culture</option>
+                    <option value="Yoga">Yoga</option>
+                </select>
+                <button type="submit" style="background-color: rgba(5, 39, 39, 0.959);
+                width: 23%;
+                justify-content: center;
+                margin: 0 auto;
+                border: 2px solid black;
+                border-radius: 20px;
+                color: white;">Create Post</button>
+            </form>
+        </section>
+
+        <section id="posts" style="margin-bottom: 2rem;">
+            <h2 style="text-align: center; margin: 5rem;">All Posts</h2>
+            <div id="postsContainer"></div>
+        </section>
+    </main>
+
+    <!----Footer----------->
+
+    <footer>
+        <div class="footerContainer">
+            <div class="socialIcons">
+                <a href=""><img
+                        src="https://cdn3.iconfinder.com/data/icons/social-media-black-white-2/512/BW_Facebook_glyph_svg-256.png"
+                        alt="Facebook"></a>
+                <a href=""><img src="https://cdn3.iconfinder.com/data/icons/remixicon-logos/24/instagram-fill-256.png"
+                        alt="Instagram"></a>
+                <a href=""><img
+                        src="https://cdn3.iconfinder.com/data/icons/social-media-black-white-2/512/BW_Twitter_glyph_svg-256.png"
+                        alt="Twitter"></a>
+                <a href=""><img src="https://cdn3.iconfinder.com/data/icons/font-awesome-brands/512/google-plus-256.png"
+                        alt="Google Plus"></a>
+                <a href=""><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-social-youtube-256.png"
+                        alt="YouTube"></a>
+            </div>
+
+            <div class="footerNav">
+                <ul>
+                    <li><a href="index3.html">Home</a></li>
+                    <li><a href="aditicreate.html">Create Yours</a></li>
+                    <li><a href="#Recent Posts">Recent Posts</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footerBottom">
+            <p>Copyright &copy;2024; Designed by <span class="designer"></span></p>
+        </div>
+    </footer>
+
+
+    <script>
+        // Get form elements
+        const postForm = document.getElementById('postForm');
+        const postsContainer = document.getElementById('postsContainer');
+        const searchBar = document.getElementById('searchBar');
+
+        // Load posts from localStorage
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+        // Function to display posts
+        function displayPosts(filteredPosts = posts) {
+            postsContainer.innerHTML = '';
+            filteredPosts.forEach((post, index) => {
+                const postElement = document.createElement('div');
+                postElement.classList.add('post');
+                postElement.innerHTML = `
+                    <h3>${post.title}</h3>
+                    <p>${post.content}</p>
+                    <p><strong>Category:</strong> ${post.category}</p>
+                    <p><button onclick="likePost(${index})">Like</button> ${post.likes} Likes</p>
+                    <p><strong>Comments:</strong></p>
+                    <ul>${post.comments.map(comment => `<li>${comment}</li>`).join('')}</ul>
+                    <textarea placeholder="Add a comment..." onkeypress="addComment(event, ${index})"></textarea>
+                    <br>
+                    <button class="edit-btn" onclick="editPost(${index})">Edit</button>
+                    <button class="delete-btn" onclick="deletePost(${index})">Delete</button>
+                `;
+                postsContainer.appendChild(postElement);
+            });
+        }
+
+        // Function to create a new post
+        postForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newPost = {
+                title: document.getElementById('title').value,
+                content: document.getElementById('content').value,
+                category: document.getElementById('category').value,
+                likes: 0,
+                comments: []
+            };
+            posts.push(newPost);
+            localStorage.setItem('posts', JSON.stringify(posts));
+            displayPosts();
+            postForm.reset();
+        });
+
+        // Function to like a post
+        function likePost(index) {
+            posts[index].likes += 1;
+            localStorage.setItem('posts', JSON.stringify(posts));
+            displayPosts();
+        }
+
+        // Function to add a comment
+        function addComment(event, index) {
+            if (event.key === 'Enter') {
+                const comment = event.target.value;
+                posts[index].comments.push(comment);
+                localStorage.setItem('posts', JSON.stringify(posts));
+                displayPosts();
+                event.target.value = ''; // Clear the textarea
+            }
+        }
+
+        // Function to edit a post
+        function editPost(index) {
+            const title = prompt('Edit title:', posts[index].title);
+            const content = prompt('Edit content:', posts[index].content);
+            if (title !== null && content !== null) {
+                posts[index].title = title;
+                posts[index].content = content;
+                localStorage.setItem('posts', JSON.stringify(posts));
+                displayPosts();
+            }
+        }
+
+        // Function to delete a post
+        function deletePost(index) {
+            if (confirm('Are you sure you want to delete this post?')) {
+                posts.splice(index, 1);
+                localStorage.setItem('posts', JSON.stringify(posts));
+                displayPosts();
+            }
+        }
+
+        // Search functionality
+        searchBar.addEventListener('input', () => {
+            const query = searchBar.value.toLowerCase();
+            const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(query) || post.content.toLowerCase().includes(query));
+            displayPosts(filteredPosts);
+        });
+
+        // Initial display
+        displayPosts();
+    </script>
+</body>
+</html>

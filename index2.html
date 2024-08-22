@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login-Signup</title>
+    <link rel="stylesheet" type="text/css" href="styles2.css">
+</head>
+<body>
+    <div id="main">
+        <input type="checkbox" id="check" aria-hidden="true">
+        <div class="signup">
+            <form id="signup-form" action="#">
+                <label for="check" aria-hidden="true">Sign-Up</label>
+                <div class="details">
+                <input type="text" name="username" placeholder="User-name" required="">
+                <input type="email" name="email" id="email" placeholder="Email" required="">
+                <input type="password" name="password" id="password" placeholder="Password" required="">
+                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm-password" required="">
+                </div>
+                <button type="submit">Sign-Up</button>
+                <a href="index3.html"></a>
+            </form>
+        </div>
+        <div class="login">
+            <form id="login-form" action="#">
+                <label for="check" aria-hidden="true">Login</label>
+                <div class="details">
+                <input type="email" name="email" id="login-email" placeholder="Email Or User name" required="">
+                <input type="password" name="password" id="login-password" placeholder="password" required="">
+                </div>
+                <button type="submit">Login</button>
+                <p>Don't have an account? <a href="index3.html">Create account</a></p>
+            </form>
+        </div>
+    </div>
+    <script src="script2.js"></script>
+</body>
+</html>
